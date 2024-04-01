@@ -5,8 +5,8 @@
 - [x] Crear un componente link para hacerlo declarativo
 - [x] crear un componente router declarativo
 - [x] Soportar pagina por defecto 404
-- [ ] Soportar rutas con parametros
-- [ ] Componente Route para hacerlo declarativo
-- [ ] lazy loading de las rutas
-- [ ] testing
-- [ ] publicar el paquete en npm
+- [x] Soportar rutas con parametros
+- [x] Componente Route para hacerlo declarativo
+- [ ] Lazy loading de las rutas
+- [ ] Testing
+- [ ] Publicar el paquete en npm

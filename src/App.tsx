@@ -1,12 +1,20 @@
 import './App.css'
-import HomePage from './pages/Home'
-import AboutPage from './pages/About'
+import { Component, lazy, Suspense } from 'react'
 import { Router } from './Router'
 import NotFoundPage from './pages/404'
 import SearchPage from './pages/Search'
 import { Route } from './Route'
 
+// Add lazy load
+const LazyHomePage = lazy(() => import('./pages/Home.tsx'))
+const LazyAboutPage = lazy(() => import('./pages/About.tsx'))
+
+//Use second form to routes
 const appRoutes = [
+	{
+		path: '/:lang/about',
+		Component: LazyAboutPage
+	},
 	{
 		path: '/search/:query',
 		Component: SearchPage
@@ -16,10 +24,12 @@ const appRoutes = [
 function App() {
 	return (
 		<main>
-			<Router routes={appRoutes} defaultComponent={NotFoundPage}>
-				<Route path='/' Component={HomePage} />
-				<Route path='/about' Component={AboutPage} />
-			</Router>
+			<Suspense fallback={null}>
+				<Router routes={appRoutes} defaultComponent={NotFoundPage}>
+					<Route path='/' Component={LazyHomePage} />
+					<Route path='/about' Component={LazyAboutPage} />
+				</Router>
+			</Suspense>
 		</main>
 	)
 }
