@@ -1,12 +1,6 @@
-import { navigate } from './utils'
-import { BUTTON } from './const'
-
-interface LinkProps {
-	target?: string
-	to: string
-	props?: React.HTMLProps<HTMLAnchorElement>
-	children: React.ReactNode
-}
+import { navigate } from './lib/utils'
+import { BUTTON } from './lib/const'
+import { LinkProps } from './types/interfaces'
 
 export function Link({ children, target, to, ...props }: LinkProps) {
 	const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {

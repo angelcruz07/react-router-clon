@@ -1,21 +1,7 @@
-import { useEffect, useState, FC, Children } from 'react'
-import { EVENTS } from './const'
+import { useEffect, useState, Children, isValidElement } from 'react'
+import { EVENTS } from './lib/const'
 import { match } from 'path-to-regexp'
-
-interface Route {
-	path: string
-	Component: React.FC<RouteComponentProps>
-}
-
-interface RouterProps {
-	routes?: Route[]
-	defaultComponent?: FC
-	children?: React.ReactNode
-}
-
-interface RouteComponentProps {
-	routeParams: Record<string, string>
-}
+import { RouterProps } from './types/interfaces'
 
 export function Router({
 	children,
@@ -40,12 +26,19 @@ export function Router({
 
 	let routeParams = {}
 	// add routes from children <Route /> components
-	const routesFromChildren = Children.map(children, ({ props, type }) => {
-		const { name } = type
-		const isRoute = name === 'Route'
 
-		return isRoute ? props : null
+	const routesFromChildren = Children.map(children, (child) => {
+		if (isValidElement(child)) {
+			const { props, type } = child
+			// @ts-expect-error: TODO
+			const { name } = type
+			const isRoute = name === 'Route'
+			return isRoute ? props : null
+		}
+
+		return null
 	})
+
 	const routesToUse = routes.concat(routesFromChildren)
 
 	const Page = routesToUse.find(({ path }) => {
@@ -64,6 +57,7 @@ export function Router({
 	return Page ? (
 		<Page routeParams={routeParams} />
 	) : (
+		// @ts-expect-error: TODO
 		<DefaultComponent routeParams={routeParams} />
 	)
 }

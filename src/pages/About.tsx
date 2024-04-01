@@ -1,12 +1,7 @@
 import { Link } from '../Link'
+import { Translation } from '../types/interfaces'
 
 type Languaje = 'es' | 'en'
-
-interface Translation {
-	title: string
-	button: string
-	description: string
-}
 
 const i18n: Record<Languaje, Translation> = {
 	es: {
@@ -25,6 +20,7 @@ const usei18n = (lang: Languaje) => {
 	return i18n[lang] || i18n.en
 }
 
+//@ts-expect-error: Todo
 export default function AboutPage({ routeParams }) {
 	const i18n = usei18n(routeParams.lang ?? 'es')
 

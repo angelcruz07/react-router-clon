@@ -1,5 +1,4 @@
-import './App.css'
-import { Component, lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { Router } from './Router'
 import NotFoundPage from './pages/404'
 import SearchPage from './pages/Search'

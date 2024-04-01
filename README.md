@@ -7,6 +7,7 @@
 - [x] Soportar pagina por defecto 404
 - [x] Soportar rutas con parametros
 - [x] Componente Route para hacerlo declarativo
-- [ ] Lazy loading de las rutas
+- [x] Lazy loading de las rutas
+- [x] i18n
 - [ ] Testing
 - [ ] Publicar el paquete en npm
