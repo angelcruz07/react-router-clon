@@ -6,3 +6,5 @@ export function navigate(href: string) {
 	const navigationEvent = new Event(EVENTS.PUSHSATE)
 	window.dispatchEvent(navigationEvent)
 }
+
+export const getCurrentPath = () => window.location.pathname
