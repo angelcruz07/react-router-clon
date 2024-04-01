@@ -1,4 +1,4 @@
-import { useEffect, useState, FC } from 'react'
+import { useEffect, useState, FC, Children } from 'react'
 import { EVENTS } from './const'
 import { match } from 'path-to-regexp'
 
@@ -10,6 +10,7 @@ interface Route {
 interface RouterProps {
 	routes?: Route[]
 	defaultComponent?: FC
+	children?: React.ReactNode
 }
 
 interface RouteComponentProps {
@@ -17,10 +18,12 @@ interface RouteComponentProps {
 }
 
 export function Router({
+	children,
 	routes = [],
 	defaultComponent: DefaultComponent = () => <h1>404</h1>
 }: RouterProps) {
 	const [currentPath, setCurrentPath] = useState(window.location.pathname)
+
 	useEffect(() => {
 		const onLocationChange = () => {
 			setCurrentPath(window.location.pathname)
@@ -36,8 +39,16 @@ export function Router({
 	}, [])
 
 	let routeParams = {}
+	// add routes from children <Route /> components
+	const routesFromChildren = Children.map(children, ({ props, type }) => {
+		const { name } = type
+		const isRoute = name === 'Route'
 
-	const Page = routes.find(({ path }) => {
+		return isRoute ? props : null
+	})
+	const routesToUse = routes.concat(routesFromChildren)
+
+	const Page = routesToUse.find(({ path }) => {
 		if (path === currentPath) return true
 		// Use path to regex to match the current path
 		const matcherUrl = match(path, { decode: decodeURIComponent })

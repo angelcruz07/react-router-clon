@@ -4,16 +4,9 @@ import AboutPage from './pages/About'
 import { Router } from './Router'
 import NotFoundPage from './pages/404'
 import SearchPage from './pages/Search'
+import { Route } from './Route'
 
 const appRoutes = [
-	{
-		path: '/',
-		Component: HomePage
-	},
-	{
-		path: '/about',
-		Component: AboutPage
-	},
 	{
 		path: '/search/:query',
 		Component: SearchPage
@@ -23,7 +16,10 @@ const appRoutes = [
 function App() {
 	return (
 		<main>
-			<Router routes={appRoutes} defaultComponent={NotFoundPage} />
+			<Router routes={appRoutes} defaultComponent={NotFoundPage}>
+				<Route path='/' Component={HomePage} />
+				<Route path='/about' Component={AboutPage} />
+			</Router>
 		</main>
 	)
 }
