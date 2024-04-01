@@ -1,8 +1,8 @@
 import { lazy, Suspense } from 'react'
-import { Router } from './Router'
+import { Router } from './Router.tsx'
 import NotFoundPage from './pages/404'
 import SearchPage from './pages/Search'
-import { Route } from './Route'
+import { Route } from './Route.tsx'
 
 // Add lazy load
 const LazyHomePage = lazy(() => import('./pages/Home.tsx'))
