@@ -1,5 +1,5 @@
-import { navigate } from './lib/utils'
-import { BUTTON } from './lib/const'
+import { navigate } from './utils'
+import { BUTTON } from './const'
 import { LinkProps } from './types/interfaces'
 
 export function Link({ children, target, to, ...props }: LinkProps) {

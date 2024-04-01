@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { Router } from '../Router'
-import { getCurrentPath } from '../lib/utils'
+import { getCurrentPath } from '../utils'
 import { Link } from '../Link'
 import { Route } from '../Route'
 
@@ -26,7 +26,7 @@ describe('Router', () => {
 	})
 
 	it('should render the component of the first route that matches', () => {
-		//@ts-expect-error: TODO
+		// @ts-expect-error: TODO
 		getCurrentPath.mockReturnValue('/about')
 
 		const routes = [

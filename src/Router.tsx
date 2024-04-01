@@ -1,8 +1,8 @@
 import { useEffect, useState, Children, isValidElement } from 'react'
-import { EVENTS } from './lib/const'
+import { EVENTS } from './const'
 import { match } from 'path-to-regexp'
 import { RouterProps } from './types/interfaces'
-import { getCurrentPath } from './lib/utils'
+import { getCurrentPath } from './utils'
 
 export function Router({
 	children,
