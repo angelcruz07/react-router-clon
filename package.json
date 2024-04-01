@@ -14,7 +14,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
-		"prepare": "swc ./src/**/*.tsx -d lib",
+		"prepare": "swc ./src/*.tsx --out-dir ./lib",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"test": "vitest",
